@@ -17,7 +17,7 @@ pip install -r requirements.txt
 The inputs of this tract filtering framework are fiber bundles (TrackVis .trk files) and their counterparts warped in a common space. 
 
 ### Example Data
-The examples provided along with the framework are 20 left cortiospinal tracts from the the Human Connectome Project(HCP) data. Each tract containing 500 streamlines which are reconstructed by using the probabilistic tractography tool in MRTrix3. Tracts are non-linearly warped to MNI space by using Advanced Normalization Tools (ANTs). The fiber bundles in subject space and the warped counterparts are located at **./data/cst/unwarped** and **./data/cst/warped** respectively. 
+The examples provided along with the framework are 20 left cortiospinal tracts from the the Human Connectome Project (HCP) data. Each tract containing 500 streamlines which are reconstructed by using the probabilistic tractography tool in MRTrix3. Tracts are non-linearly warped to MNI space by using Advanced Normalization Tools (ANTs). The fiber bundles in subject space and the warped counterparts are located at **./data/cst/unwarped** and **./data/cst/warped** respectively. 
 
 ## 3. Running the code
 To extract the group-wise consistent sub-bundle structures of provided examples with default settings, user can run following code:
