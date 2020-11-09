@@ -1,5 +1,4 @@
 # GroupwiseTractFiltering
-A track filtering method by leveraging the groupwise consistency of fiber bundles that naturally exists across subjects
 
 This repository constains the implementation of track filtering method presented in: Xia, Yihao, and Yonggang Shi. "**Groupwise track filtering via iterative message passing and pruning**." NeuroImage 221 (2020): 117147.
 
