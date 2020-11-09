@@ -40,7 +40,7 @@ Users can indicate specific parameters via command-line arguments:
   * --length_max_perc: maximum length limitation indicating the tolerance of local inconsistency.
   * --group_perc: affinity rate, the affinity parameter(K) = affinity rate * the total number of subjects in the dataset
 
-* **for termination**
+* **termination setting**
   * --max_iteration: maximum iteration number
   * --distance_termination: proximity parameter for termination
 
