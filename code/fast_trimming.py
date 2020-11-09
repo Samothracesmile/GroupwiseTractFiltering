@@ -171,8 +171,8 @@ parser.add_argument('--batch_size', type=int, default=200, help='Size of random 
 
 # trimming setting
 parser.add_argument('--sigma', type=int, default=8, help='sigma')
-parser.add_argument('--lengthD_perc', type=float, default=0.6, help='Min Length Percentage Requirement')
-parser.add_argument('--lengthE_perc', type=float, default=0.1, help='Max Length Percentage Requirement')
+parser.add_argument('--length_min_perc', type=float, default=0.6, help='Min Length Percentage Requirement')
+parser.add_argument('--length_max_perc', type=float, default=0.1, help='Max Length Percentage Requirement')
 parser.add_argument('--group_perc', type=float, default=1, help='Group size')
 
 # for termination
@@ -181,6 +181,8 @@ parser.add_argument('--distance_termination', type=float, default=3, help='Termi
 
 # computation setting
 parser.add_argument('--cpu_num', type=int, default=6, help='Number of cpu threads')
+
+# results
 parser.add_argument('--res_dir', type=str, default='')
 
 
@@ -198,8 +200,8 @@ cache_flag = args.cache_flag
 batch_size = args.batch_size
 
 sigma = args.sigma
-lengthD_perc = args.lengthD_perc
-lengthE_perc = args.lengthE_perc
+length_min_perc = args.length_min_perc
+length_max_perc = args.length_max_perc
 group_perc = args.group_perc
 
 
@@ -243,8 +245,8 @@ for warped_tract, org_warped_tract, unwarped_tract in zip(warped_tract_list, org
 # set the lengthD according to lengthD percentage
 mean_point_on_streamline = np.mean([len(sl) for unwarped_tract in unwarped_tract_list for sl in unwarped_tract.streamlines])
 
-lengthD = lengthD_perc*mean_point_on_streamline
-lengthE = max(round(lengthE_perc*mean_point_on_streamline),1)
+lengthD = length_min_perc*mean_point_on_streamline
+lengthE = max(round(length_max_perc*mean_point_on_streamline),1)
 group_num = min(int(group_perc*len(unwarped_tract_list)),len(unwarped_tract_list)-1)
 
 # set pool for multiprocessing
@@ -350,11 +352,11 @@ with open(log_file, 'w') as f:
 # f.write('ref_num {}\n'.format(ref_num))
 # f.write('batch_size {}\n'.format(batch_size))
 
-# f.write('lengthD_perc {}\n'.format(lengthD_perc))
+# f.write('length_min_perc {}\n'.format(length_min_perc))
 # f.write('lengthD {}\n'.format(lengthD))
 
 # f.write('lengthE {}\n'.format(lengthE))
-# f.write('lengthE_perc {}\n'.format(lengthE_perc))
+# f.write('length_max_perc {}\n'.format(length_max_perc))
 
 # f.write('group_num {}\n'.format(group_num))
 # f.write('group_perc {}\n'.format(group_perc))
