@@ -2,6 +2,8 @@
 
 This repository constains the implementation of track filtering method presented in: Xia, Yihao, and Yonggang Shi. "**Groupwise track filtering via iterative message passing and pruning**." NeuroImage 221 (2020): 117147.
 
+https://www.sciencedirect.com/science/article/pii/S1053811920306339
+
 
 
 ## 1. Code setup and Requirement
@@ -12,7 +14,7 @@ pip install -r requirements.txt
 ```
 
 ## 2. Data Preparation
-The inputs of this tract filtering framework are fiber bundles (TrackVis (www.trackvis.org) trk files) and their counterparts warped in a common space. 
+The inputs of this tract filtering framework are fiber bundles (TrackVis .trk files) and their counterparts warped in a common space. 
 
 ### Example Data
 The examples provided along with the framework are 20 left cortiospinal tracts from the the Human Connectome Project(HCP) data. Each tract containing 500 streamlines which are reconstructed by using the probabilistic tractography tool in MRTrix3. Tracts are non-linearly warped to MNI space by using Advanced Normalization Tools (ANTs). The fiber bundles in subject space and the warped counterparts are located at **./data/cst/unwarped** and **./data/cst/warped** respectively. 
