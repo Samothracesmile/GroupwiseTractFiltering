@@ -51,6 +51,6 @@ Users can indicate specific parameters via command-line arguments:
   * --distance_termination: proximity parameter for termination
 
 * **computation setting**
-  * --cpu_num: cup threads using for parallel computing
+  * --cpu_num: cup threads used for parallel computing
 
 
