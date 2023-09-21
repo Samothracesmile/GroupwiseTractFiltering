@@ -162,24 +162,60 @@ def firstbinarize(AA):
         # print(antiforwardi)
         return label > 0
 
+####################################################OLD#########################
+# def save_tract(tract_bundle, filename, tract_hdr=None):
+#     '''
+#     tract_bundle: Numpy array list
+#     tract_hdr: .trk head file 
+#     '''
 
-def save_tract(tract_bundle, filename, tract_hdr=None):
+
+#     if not os.path.exists(os.path.dirname(filename)):
+#         os.makedirs(os.path.dirname(filename))
+
+#     for_save = [(streamline,None,None) for streamline in tract_bundle]
+
+#     if tract_hdr is not None:
+#         tv.write(filename, tuple(for_save), tract_hdr)
+#     else:
+#         tv.write(filename, tuple(for_save))
+
+####################################################NEW#########################
+def save_tract(tract_bundle, filename, scales=None, props=None, tract_hdr=None, ref_trk_file=None):
     '''
     tract_bundle: Numpy array list
-    tract_hdr: .trk head file 
+    tract_hdr: .trk head file
+    scales: Numpy array list for scales
     '''
-
-
     if not os.path.exists(os.path.dirname(filename)):
         os.makedirs(os.path.dirname(filename))
 
-    for_save = [(streamline,None,None) for streamline in tract_bundle]
+
+    if scales is None:
+        scales = [None]*len(tract_bundle)
+
+    if props is None:
+        props = [None]*len(tract_bundle)
+
+
+    # use the header form ref trk
+    if ref_trk_file is not None:
+        tract_hdr = Tract(ref_trk_file).header
+
+
+    for_save = [(streamline,scale,prop) for streamline, scale, prop in zip(tract_bundle, scales, props)]
 
     if tract_hdr is not None:
-        tv.write(filename, tuple(for_save), tract_hdr)
+        if not len(for_save)==tract_hdr['n_count']:
+            new_header = tract_hdr.copy()
+            new_header['n_count'] = len(for_save)
+
+            tv.write(filename, tuple(for_save), new_header)
+        else:
+            tv.write(filename, tuple(for_save), tract_hdr)
+
     else:
         tv.write(filename, tuple(for_save))
-
 
 ######################################################### commonness measurement #########################################################
 def distMatrix(s1,s2):
